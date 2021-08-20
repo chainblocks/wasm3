@@ -36,8 +36,6 @@ endif()
 # Configure the toolchain
 
 if(CLANG OR CLANG_SUFFIX)
-  set(CMAKE_C_COMPILER   "clang${CLANG_SUFFIX}")
-  set(CMAKE_CXX_COMPILER "clang++${CLANG_SUFFIX}")
   set(CMAKE_C_FLAGS      "${CMAKE_C_FLAGS} -fuse-ld=lld")
 
   if(BUILD_FUZZ)
@@ -50,16 +48,7 @@ if(CLANG OR CLANG_SUFFIX)
   endif()
 endif()
 
-if(CLANG_CL)
-  set(CMAKE_C_COMPILER   "clang-cl")
-  set(CMAKE_CXX_COMPILER "clang-cl")
-  set(CMAKE_LINKER       "lld-link")
-endif()
-
 if(EMSCRIPTEN OR EMSCRIPTEN_LIB)
-  set(CMAKE_C_COMPILER   "emcc")
-  set(CMAKE_CXX_COMPILER "em++")
-
   if (EMSCRIPTEN_LIB)
     set(APP_DIR          "platforms/emscripten_lib")
     set(OUT_FILE         "wasm3.wasm")
